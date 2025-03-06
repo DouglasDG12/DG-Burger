@@ -4,6 +4,13 @@ const somarTudo = document.querySelector(".somar-tudo")
 const filtrar = document.querySelector(".filtrar-tudo")
 const list = document.querySelector(".lista")
 
+function formatarMoeda(value) {
+    const newValue = value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+
+    return newValue
+}
+
+
 function mostrarTudo(itensArray) {
     let li = ""
 
@@ -15,7 +22,7 @@ function mostrarTudo(itensArray) {
                ${itens.name}
             </p>
             <p class="item-price">
-               ${itens.price}
+               ${formatarMoeda(itens.price)}
             </p>
         </li>
         `
@@ -36,12 +43,12 @@ function reduzir() {
 
     list.innerHTML = `
      <li>
-      <p class="item-price"> valor total de todos os produtos R$: ${reducao} </p>
+      <p class="item-price"> valor total de todos os produtos ${formatarMoeda(reducao)} </p>
      </li>
     `
 }
 
-function filtrando(){
+function filtrando() {
     const veganos = menuOptions.filter(vegann => vegann.vegan)
 
     mostrarTudo(veganos)
